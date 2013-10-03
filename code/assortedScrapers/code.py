@@ -6,9 +6,10 @@ import urllib2, lxml.etree
 
 #Set the following to 1 to scrape the corresponding list, else 0
 BGMEA=0
-puma=1
+puma=0
 adidas=0
-fabvarn=1
+fabvarn=0
+bangAccord=1
 
 #----
 def flatten(el):           
@@ -87,7 +88,10 @@ def gettext_with_bi_tags(el):
         res.append("</%s>" % lel.tag)
         if el.tail:
             res.append(el.tail)
-    return "".join(res).strip()
+    txt="".join(res).strip()
+    txt=txt.replace(u'\xa0', u' ')
+    txt=txt.encode('utf-8')
+    return txt
 
 
 #------PUMA
@@ -207,3 +211,53 @@ if fabvarn==1:
         print bigdata
         scraperwiki.sqlite.save(unique_keys=[], table_name='fabvarn', data=bigdata)
         bigdata=[]
+        
+if bangAccord==1:
+    url='http://www.industriall-union.org/sites/default/files/uploads/documents/Bangladesh/accordfinalreport310.pdf'
+    pdfdata = urllib2.urlopen(url).read()
+    xmldata = scraperwiki.pdftoxml(pdfdata)
+    root = lxml.etree.fromstring(xmldata)
+    pages = list(root)
+    
+    bigdata=[]
+    
+    print pages
+    started=0
+    for page in pages:
+    	data={}
+
+        for el in page:
+            if started==0 and el.tag == "text" and int(el.attrib['top'])>247: started=1
+            if el.tag == "text" and started:
+            	val=gettext_with_bi_tags(el)
+            	if int(el.attrib['left'])<35:
+            		for d in ['FactoryName','Address','District','Division', 'PostCode','PhoneCityCode','Phone','PhoneExtension','Buildings','Stories','factoryMultiPurpose','factoryMultiFactory','floors','workers','activeMembers']: data[d]=''
+            		data['FactoryName']=handleMultiLine(data['FactoryName'],el)
+            	elif int(el.attrib['left'])<190: data['Address']=handleMultiLine(data['Address'],el)
+            	elif int(el.attrib['left'])<365: data['District']=handleMultiLine(data['District'],el)
+            	elif int(el.attrib['left'])<425: data['Division']=handleMultiLine(data['Division'],el)
+            	elif int(el.attrib['left'])<480: data['PostCode']=handleMultiLine(data['PostCode'],el)
+            	elif int(el.attrib['left'])<532: data['PhoneCityCode']=handleMultiLine(data['PhoneCityCode'],el)
+            	elif int(el.attrib['left'])<560: data['Phone']=handleMultiLine(data['Phone'],el)
+            	elif int(el.attrib['left'])<630: data['PhoneExtension']=handleMultiLine(data['PhoneExtension'],el)
+            	elif int(el.attrib['left'])<692: data['Buildings']=handleMultiLine(data['Buildings'],el)
+            	elif int(el.attrib['left'])<725: data['Stories']=handleMultiLine(data['Stories'],el)
+            	elif int(el.attrib['left'])<900: data['factoryMultiPurpose']=handleMultiLine(data['factoryMultiPurpose'],el)
+            	elif int(el.attrib['left'])<945: data['factoryMultiFactory']=handleMultiLine(data['factoryMultiFactory'],el)
+            	elif int(el.attrib['left'])<985: data['floors']=handleMultiLine(data['floors'],el)
+            	elif int(el.attrib['left'])<1075: data['workers']=handleMultiLine(data['workers'],el)
+            	elif int(el.attrib['left'])<1135:
+            		data['activeMembers']=handleMultiLine(data['activeMembers'],el)
+            		bigdata.append(data.copy())
+
+    print bigdata
+    bigdataL=[]
+    bigdataL.append(['FactoryName','Address','District','Division', 'PostCode','PhoneCityCode','Phone','PhoneExtension','Buildings','Stories','factoryMultiPurpose','factoryMultiFactory','floors','workers','activeMembers'])
+    for b in bigdata:
+    	tmp=[]
+    	for d in ['FactoryName','Address','District','Division', 'PostCode','PhoneCityCode','Phone','PhoneExtension','Buildings','Stories','factoryMultiPurpose','factoryMultiFactory','floors','workers','activeMembers']: tmp.append(b[d])
+    	bigdataL.append(tmp)
+    import csv
+    with open('accord.csv', 'wb') as f:
+    	writer = csv.writer(f)
+    	writer.writerows(bigdataL)
