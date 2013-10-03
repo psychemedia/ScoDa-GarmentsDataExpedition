@@ -1,0 +1,56 @@
+#---TRADE ASSOCIATIONS
+
+
+BGMEA - Bangladesh Garment Manufacturers and Export Association
+http://www.bgmea.com.bd/member/memberlist
+
+
+GMAC - Garment Manufacturers Association in Cambodia
+http://www.gmac-cambodia.org/members/default.php
+
+
+#---BRANDS AND RETAILERS
+
+Adidas
+via http://www.adidas-group.com/en/sustainability/Suppliers/default.aspx
+http://www.adidas-group.com/en/sustainability/assets/factory_list/2013_May_Global_Factory_List.pdf
+http://www.adidas-group.com/en/sustainability/assets/factory_list/2013_May_Licensee_Factory_List.pdf
+
+
+H&M
+via http://about.hm.com/AboutSection/en/About/Sustainability/Commitments/Responsible-Partners/Supply-Chain/SupplierList.html
+
+
+Levi-Strauss
+via http://www.levistrauss.com/sustainability/product/supplier-list
+http://www.levistrauss.com/sites/default/files/librarydocument/2013/9/levi-strauss-co-factory-list-september-2013.pdf
+
+
+Lindex
+via http://www.lindex.com/csr/en/social-responsibility/work-in-the-supply-chain/list-of-suppliers-and-factories/
+
+
+Nike
+via http://nikeinc.com/pages/manufacturing-map
+(excel, PDF, JSON downloads available)
+
+
+Puma
+via http://about.puma.com/category/sustainability/puma-standard/
+http://about.puma.com/wp-content/themes/aboutPUMA_theme/media/pdf/2013/250413_Factory%20List.pdf
+
+
+Timberland
+via http://responsibility.timberland.com/factories/
+http://responsibility.timberland.com/wp-content/uploads/Q2_2013_Factory_List.pdf (quarterly updates)
+
+
+Varner-Gruppen
+via http://www.varner.no/en/Social-responsibility/Documents-newslist/
+http://cdn.varner.eu/cdn-1ce8c61e64f97ca/Global/Varner/CSR/Downloads_CSR/Fabrikklister_Varner-Gruppen_2013_JULI.pdf
+
+
+Walmart
+via http://corporate.walmart.com/global-responsibility/ethical-sourcing/promoting-responsible-sourcing-in-bangladesh
+http://az204679.vo.msecnd.net/media/documents/factory-list-unapproved-bangladesh-updated-6-3-13_130148279186724526.pdf [unapproved factories]
+
