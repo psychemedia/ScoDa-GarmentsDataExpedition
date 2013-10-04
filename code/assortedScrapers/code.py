@@ -58,7 +58,7 @@ def resPageLookup(url):
         #When we've got the link to the compnay page, we can scrape that page
         detailPageLookup( cells[5].xpath('a/@href')[0], cid )
     if bigdirs!={}:
-        scraperwiki.sqlite.save(unique_keys=['cid'], table_name='indexData', data=bigdirs)
+        scraperwiki.sqlite.save(unique_keys=['cid'], table_name='BGMEA_indexData', data=bigdirs)
 
 
 #This is a fudge for now, based on an observation of how many results pages there are
@@ -221,12 +221,18 @@ if bangAccord==1:
     
     bigdata=[]
     
+    leftCount={}
+    
     print pages
     started=0
     for page in pages:
     	data={}
 
         for el in page:
+            if el.tag == "text":
+            	s=str(el.attrib['left'])
+            	if s in leftCount: leftCount[s]=leftCount[s]+1
+            	else:leftCount[s]=1
             if started==0 and el.tag == "text" and int(el.attrib['top'])>247: started=1
             if el.tag == "text" and started:
             	val=gettext_with_bi_tags(el)
@@ -251,6 +257,10 @@ if bangAccord==1:
             		bigdata.append(data.copy())
 
     print bigdata
+    
+    for lc in leftCount:
+    	if leftCount[lc]>100: print lc,leftCount[lc]
+    
     bigdataL=[]
     bigdataL.append(['FactoryName','Address','District','Division', 'PostCode','PhoneCityCode','Phone','PhoneExtension','Buildings','Stories','factoryMultiPurpose','factoryMultiFactory','floors','workers','activeMembers'])
     for b in bigdata:
