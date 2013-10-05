@@ -33,3 +33,13 @@ APPROACH 2
 Not tried yet - e.g. script I started developing in http://blog.ouseful.info/2012/09/26/merging-data-sets-based-on-partially-matched-data-elements/
 
 Something else we could add in to the partial matching - just match the first characters of the cleaned (uppercased, stripped apostrophe, full stop, brackets, ltd/limited etc) company names.
+
+
+APPROACH 3
+----------
+
+Is this fuzzy matching Python library useful for a recipe? https://pypi.python.org/pypi/jellyfish/0.1.2
+
+Any other fuzzy matching libraries out there, or recipes for using them to reconcile fuzzily matching lists?
+
+Any clustering libraries that might be useful in this respect?
