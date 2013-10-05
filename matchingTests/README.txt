@@ -43,3 +43,9 @@ Is this fuzzy matching Python library useful for a recipe? https://pypi.python.o
 Any other fuzzy matching libraries out there, or recipes for using them to reconcile fuzzily matching lists?
 
 Any clustering libraries that might be useful in this respect?
+
+
+APPROACH 4
+----------
+
+For countries where OpenCorporates data exists, use OpenRefine reconciliation service to try to get back corporate identifiers based on company name.
