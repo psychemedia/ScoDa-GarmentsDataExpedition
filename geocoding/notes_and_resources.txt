@@ -1,3 +1,4 @@
 Bangladesh postcode
 
 http://www.bangladeshpost.gov.bd/postcode.asp
+Copying and pasting tables from the linked pages results in lists with the four columns (District, Thana, SubOffice, Post Code) spread over 4 lines. We can simple load this data in to OpenRefine, using the "Line-based text files" importer and the setting "Parse every 4 lines into one row".
