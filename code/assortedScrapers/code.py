@@ -237,6 +237,10 @@ if bangAccord==1:
             if el.tag == "text" and started:
             	val=gettext_with_bi_tags(el)
             	if int(el.attrib['left'])<35:
+            		#There is a bug here: I assume that the FactoryName fits on a single
+            		#line; however, it may straddle two lines. We need to detect the table
+            		#line that splits separate rows? Or explicitly handle exceptions?
+            		#Or fix as part of data cleaning?
             		for d in ['FactoryName','Address','District','Division', 'PostCode','PhoneCityCode','Phone','PhoneExtension','Buildings','Stories','factoryMultiPurpose','factoryMultiFactory','floors','workers','activeMembers']: data[d]=''
             		data['FactoryName']=handleMultiLine(data['FactoryName'],el)
             	elif int(el.attrib['left'])<190: data['Address']=handleMultiLine(data['Address'],el)
